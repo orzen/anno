@@ -1,0 +1,12 @@
+-module(anno_api).
+
+-export([
+    init/2
+]).
+
+init(Req, State) ->
+    Reply = cowboy_req:reply(200,
+        #{<<"content-type">> => <<"text/plain">>},
+        State,
+        Req),
+    {cowboy_rest, Reply, State}.

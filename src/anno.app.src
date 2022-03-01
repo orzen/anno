@@ -1,23 +1,35 @@
-{application, anno,
- [{description, "An OTP application"},
-  {vsn, "0.1.0"},
-  {registered, [
-    anno_nodes,
-    anno_registry
-  ]},
-  {mod, {anno_app, []}},
-  {applications, [
-    kernel,
-    stdlib
-  ]},
-  {env,[]},
-  {modules, [
-    anno_app,
-    anno_cfg,
-    anno_nodes,
-    anno_registry,
-    anno_sup
-  ]},
-  {licenses, ["Apache 2.0"]},
-  {links, []}
- ]}.
+{
+  application,
+  anno,
+  [
+    {description, "An OTP application"},
+    {vsn, "0.1.0"},
+    {registered, [
+        anno_sup,
+        anno_node_assoc,
+        anno_mod_assoc,
+        anno_nodes,
+        anno_registry
+    ]},
+    {mod, {anno_app, []}},
+    {applications, [kernel, stdlib]},
+    {env, []},
+    {
+      modules,
+      [
+        anno,
+        anno_app,
+        anno_associations,
+        anno_cfg,
+        anno_http,
+        anno_monitor,
+        anno_nodes,
+        anno_proc_lib,
+        anno_registry,
+        anno_sup
+      ]
+    },
+    {licenses, ["Apache 2.0"]},
+    {links, []}
+  ]
+}.

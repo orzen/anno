@@ -22,6 +22,17 @@ Build
 
     $ rebar3 compile
 
+
+Debug
+-----
+
+### Eunit
+```
+rebar3 as test shell
+debugger:start().
+eunit:test(test_mod, [verbose]).
+```
+
 TODO
 ----
 

@@ -1,0 +1,37 @@
+-module(anno_api_node).
+
+-export([
+    init/2,
+    allowed_methods/2,
+    content_types_provided/2,
+    content_types_accepted/2
+]).
+
+init(Req, Opts) ->
+    {cowboy_rest, Req, Opts}.
+
+allowed_methods(Req, State) ->
+    {[<<"GET">>, <<"POST">>], Req, State}.
+
+content_types_provided(Req, State) ->
+    {[
+        {{<<"application">>, <<"json">>, []}, get_node}
+     ], Req, State}.
+
+content_types_accepted(Req, State) ->
+    {[
+        {{<<"application">>, <<"json">>, '*'}, add_node}
+     ], Req, State}.
+
+get_node(Req, index) ->
+    ok;
+get_node(Req, State) ->
+    ok.
+
+% https://stackoverflow.com/questions/28094443/how-to-post-json-data-using-content-type-accepted-method-in-erlang-in-the-handle
+add_node(Req, index) ->
+    ok;
+add_node(Req, State) ->
+    {ok, Req_body, Req1} = cowboy_req:body(Req),
+    Req_body_dec = jsx:decode(Req_body),
+    {Resp_json, Req, State}.
